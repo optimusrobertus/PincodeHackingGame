@@ -43,8 +43,8 @@ def main():
     guess = input()
 
     if guess == code:
-      print("Well done, " + name.introduction() +"! You've hacked the code in " + str(guessesTaken) +" turns!")   
-      break
+      print("Well done, [insert name(BUT HOW?????)]! You've hacked the code in " + str(guessesTaken) +" turns!")   
+      return
 
 main()
 
@@ -53,17 +53,17 @@ main()
 
 def play_again():
   nicknames = [
-  "Mate", "Friend", "Buddy", "Son", "Cuz", "", "", "", ""
+  "Mate", "Friend", "Buddy", "Son", "Cuz", "Fella", "", "", ""
   ]
   nickname = random.choice(nicknames)
   while True:
-    print("That sure was a great game, " + nickname + ". Do you want to play again? (yes / no )")
+    print("That sure was a great game, " + nickname.lower() + ". Do you want to play again? (yes / no )")
     play_again = input()
     if play_again.lower() == "yes":
       print("Great choice! This time, it won't be so easy!")
       main()
     elif play_again.lower() == "no":
-      #print("That's too bad.... I really enjoyed playing with you! But hey, it was fun, and I hope to see you again soon, " + introduction(name) + "!")
+      print("That's too bad.... I really enjoyed playing with you! But hey, it was fun, and I hope to see you again soon, [insert name (BUT HOW?????)]!")
       exit()
     else:
       print("Please answer with either yes or no.")
