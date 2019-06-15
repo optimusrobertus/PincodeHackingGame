@@ -47,16 +47,16 @@ introduction()
 def main():
 
 
-  guessesTaken = 11
-  while guessesTaken > 1:
-    guessesTaken = guessesTaken - 1
-    print("You have " + str(guessesTaken) + " guesses left.")
+  guessesTaken = 0
+  while guessesTaken < 10:
+    guessesTaken = guessesTaken + 1
+    print("This is turn " + str(guessesTaken) + ". Try a code!")
     guess = input()
 
     #Checks if only numbers have been inputted
     if guess.isdigit() == False:
       print("You can only use numbers, remember?")
-      guessesTaken = guessesTaken + 1
+      guessesTaken = guessesTaken - 1
       continue
    
       
@@ -64,7 +64,7 @@ def main():
     #Checks whether guess is 4 numbers long
     if len(guess) != len(code):
       print("The code is only 4 numbers long! Try again!")
-      guessesTaken = guessesTaken + 1
+      guessesTaken = guessesTaken - 1
       continue 
         
       
@@ -76,21 +76,54 @@ def main():
       else: 
         print("Well done, " + name + "! You've hacked the code in " + str(guessesTaken) +" turns!")
       return
+    
+    list(code)
+    codeList = list(code)
+    list(guess)
+    guessList = list(guess)
+
+    print(codeList)
+    print(guessList)
+
+    feedback = ""
+    print(feedback)
+
+    if codeList[0] == guessList[0]:
+      print("G")
+    elif codeList[0] == guessList[0:4]:
+      print("C")
     else:
+      print("F")
+    
+    if codeList[1] == guessList[1]:
+      print("G")
+    elif codeList[1] == guessList[0:4]:
+      print("C")
+    else:
+      print("F")
+
+    if codeList[2] == guessList[2]:
+      print("G")
+    elif codeList[2] == guessList[0:4]:
+      print("C")
+    else:
+      print("F")
+
+    if codeList[3] == guessList[3]:
+      print("G")
+    elif codeList[3] == guessList[0:4]:
+      print("C")
+    else:
+      print("F")    
+    #else:
       
-      for idx in range(0,3):
-        guessNuem = guess[idx]
-        codeNum = code[idx]
-
-
-        
-        
-
-
-      list(code)
-      codeList = list(code)
-      list(guess)
-      guessList = list(guess)      
+    #  for idx in range(0,3):
+    #    guessNum = guess[idx]
+    #    codeNum = code[idx]
+    #  list(code)
+    #  codeList = list(code)
+    #  list(guess)
+    #  guessList = list(guess)      
 main()
 
 
