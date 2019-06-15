@@ -22,7 +22,7 @@ def introduction():
   #Asks for tutorial
   print("Do you want a tutorial? (yes / no)")
   tutorial = input()
-  
+
   #While loop for giving the tutorial
   while tutorial.lower() != "no" or tutorial.lower() != "yes":
     #Gives tutorial
@@ -31,10 +31,10 @@ def introduction():
       print("For every number in the pincode you've come up with, I'll tell you whether it is correct AND correctly placed (G), correct but placed incorrectly (C) or just plain wrong (F).")
       break
 
-    #Skips tutorial 
+    #Skips tutorial
     elif tutorial.lower() == "no":
       break
-    
+
     #Checks if the correct input has been given
     else:
       print("Please answer with either yes or no.")
@@ -58,25 +58,25 @@ def main():
       print("You can only use numbers, remember?")
       guessesTaken = guessesTaken - 1
       continue
-   
-      
+
+
 
     #Checks whether guess is 4 numbers long
     if len(guess) != len(code):
       print("The code is only 4 numbers long! Try again!")
       guessesTaken = guessesTaken - 1
-      continue 
-        
-      
-    
+      continue
+
+
+
     #Checks the code
     if guess == code:
       if (guessesTaken) == 1:
         print("Well done, " + name + "! You've hacked the code in " + str(guessesTaken) +" turn!")
-      else: 
+      else:
         print("Well done, " + name + "! You've hacked the code in " + str(guessesTaken) +" turns!")
       return
-    
+
     list(code)
     codeList = list(code)
     list(guess)
@@ -85,45 +85,47 @@ def main():
     print(codeList)
     print(guessList)
 
-    feedback = ""
-    print(feedback)
+    feedback = []
+
 
     if codeList[0] == guessList[0]:
-      print("G")
+      feedback.append("G")
     elif codeList[0] == guessList[0:4]:
-      print("C")
+      feedback.append("C")
     else:
-      print("F")
-    
+      feedback.append("F")
+
     if codeList[1] == guessList[1]:
-      print("G")
+      feedback.append("G")
     elif codeList[1] == guessList[0:4]:
-      print("C")
+      feedback.append("C")
     else:
-      print("F")
+      feedback.append("F")
 
     if codeList[2] == guessList[2]:
-      print("G")
+      feedback.append("G")
     elif codeList[2] == guessList[0:4]:
-      print("C")
+      feedback.append("C")
     else:
-      print("F")
+      feedback.append("F")
 
     if codeList[3] == guessList[3]:
-      print("G")
+      feedback.append("G")
     elif codeList[3] == guessList[0:4]:
-      print("C")
+      feedback.append("C")
     else:
-      print("F")    
+      feedback.append("F")
+
+    print(*feedback, sep=' ')
     #else:
-      
+
     #  for idx in range(0,3):
     #    guessNum = guess[idx]
     #    codeNum = code[idx]
     #  list(code)
     #  codeList = list(code)
     #  list(guess)
-    #  guessList = list(guess)      
+    #  guessList = list(guess)
 main()
 
 
@@ -142,12 +144,12 @@ def play_again():
       print("Great choice! This time, it won't be so easy!")
       main()
 
-    #Stops the game  
+    #Stops the game
     elif play_again.lower() == "no":
       print("That's too bad.... I really enjoyed playing with you! But hey, it was fun, and I hope to see you again soon, " + name + "!")
       exit()
 
-    #Checks if the correct input has been given  
+    #Checks if the correct input has been given
     else:
       print("Please answer with either yes or no.")
       play_again = input()
