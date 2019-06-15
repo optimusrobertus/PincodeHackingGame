@@ -5,9 +5,8 @@ print("------ HACK THE PINCODE: THE GAME ------")
 #chooses the random pincode that needs to be hacked
 import random
 pincode = [
-  "1231", #'9997', '8829', '6765', '9114', '5673', '0103', '4370', '8301','1022'
+  '1231', '9997', '8829', '6765', '9114', '5673', '0103', '4370', '8301','1022'
 ]
-code = random.choice(pincode)
 
 name = None
 
@@ -46,11 +45,17 @@ introduction()
 
 def main():
 
+  global code
+  global guess
 
+  code = random.choice(pincode)
+  print(code)
   guessesTaken = 0
   while guessesTaken < 10:
     guessesTaken = guessesTaken + 1
     print("This is turn " + str(guessesTaken) + ". Try a code!")
+    global guess
+
     guess = input()
 
     #Checks if only numbers have been inputted
@@ -82,36 +87,33 @@ def main():
     list(guess)
     guessList = list(guess)
 
-    print(codeList)
-    print(guessList)
-
     feedback = []
 
 
     if codeList[0] == guessList[0]:
       feedback.append("G")
-    elif codeList[0] == guessList[0:4]:
+    elif codeList[0] != guessList[0] and codeList[0] == guessList[1] or codeList[0] == guessList[2] or codeList[0] == guessList[3]:
       feedback.append("C")
     else:
       feedback.append("F")
 
     if codeList[1] == guessList[1]:
       feedback.append("G")
-    elif codeList[1] == guessList[0:4]:
+    elif codeList[1] != guessList[1] and codeList[1] == guessList[0] or codeList[1] == guessList[2] or codeList[1] == guessList[3]:
       feedback.append("C")
     else:
       feedback.append("F")
 
     if codeList[2] == guessList[2]:
       feedback.append("G")
-    elif codeList[2] == guessList[0:4]:
+    elif codeList[2] != guessList[2] and codeList[2] == guessList[0] or codeList[2] == guessList[1] or codeList[2] == guessList[3]:
       feedback.append("C")
     else:
       feedback.append("F")
 
     if codeList[3] == guessList[3]:
       feedback.append("G")
-    elif codeList[3] == guessList[0:4]:
+    elif codeList[3] != guessList[3] and codeList[3] == guessList[0] or codeList[3] == guessList[1] or codeList[3] == guessList[2]:
       feedback.append("C")
     else:
       feedback.append("F")
@@ -128,17 +130,15 @@ def main():
     #  guessList = list(guess)
 main()
 
-
 #The player has te option to play again
 
 def play_again():
-  nicknames = [
-  "Mate", "Friend", "Buddy", "Son", "Niffauw", "Fella", "Bro", "", ""
-  ]
-  nickname = random.choice(nicknames)
   while True:
     #Restarts the game
-    print("That sure was a great game, " + nickname.lower() + ". Do you want to play again? (yes / no)")
+    if code != guess:
+      print("You've lost! The correct code was " + code + ". Do you want to try again, and win this time?")
+    elif code == guess:
+      print("Oof. You've beaten me.... Do you want to be play again (and be beaten this time)? (yes / no)")
     play_again = input()
     if play_again.lower() == "yes":
       print("Great choice! This time, it won't be so easy!")
