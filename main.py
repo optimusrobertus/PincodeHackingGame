@@ -54,7 +54,6 @@ def main():
     global guess
 
     code = random.choice(pincode)
-    print(code)
     guessesTaken = 0
     while guessesTaken < 10:
         guessesTaken = guessesTaken + 1
