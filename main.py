@@ -4,8 +4,9 @@ print("------ HACK THE PINCODE: THE GAME ------")
 #chooses the random pincode that needs to be hacked
 import random
 pincode = [
-    '1231', '9997', '8829', '6765', '9114', '5673', '0103', '4370', '8301',
-    '1022'
+    #'1231', '9997', '8829',
+    '6765',  #'9114', '5673', '0103', '4370', '8301',
+    #'1022'
 ]
 
 name = None
@@ -31,7 +32,6 @@ def introduction():
             print(
                 "For every number in the pincode you've come up with, I'll tell you whether it is correct AND correctly placed (G), correct but placed incorrectly (C) or just plain wrong (F)."
             )
-            break
 
         #Skips tutorial
         elif tutorial.lower() == "no":
@@ -43,12 +43,12 @@ def introduction():
             tutorial = input()
 
 
-introduction()
-
 #The code given by the user is checked
 
 
 def main():
+
+    introduction()
 
     global code
     global guess
@@ -59,6 +59,10 @@ def main():
         guessesTaken = guessesTaken + 1
         print("This is turn " + str(guessesTaken) + ". Try a code!")
         global guess
+
+        #Easteregg codes
+        e1 = "1955"
+        e2 = "1980"
 
         guess = input()
 
@@ -84,11 +88,6 @@ def main():
                       str(guessesTaken) + " turns!")
             return
 
-        #list(code)
-        #codeList = list(code)
-        #list(guess)
-        #guessList = list(guess)
-
         feedback = []
         nodouble = []
 
@@ -103,8 +102,14 @@ def main():
                         nodouble.append(guess[i])
             elif guess[i] not in code:
                 feedback.append("F")
+                nodouble.append(guess[i])
 
-        print(*feedback, sep=' ')
+        #Easteregg
+        if guess != code and guess == e1 or guess == e2:
+            print("Yeah!")
+            guessesTaken = guessesTaken - 1
+        else:
+            print(*feedback, sep=' ')
 
 
 main()
