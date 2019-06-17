@@ -4,10 +4,12 @@ print("------ HACK THE PINCODE: THE GAME ------")
 #chooses the random pincode that needs to be hacked
 import random
 pincode = [
-    '1231', '9997', '8829', '6765',  '9114', '5673', '0103', '4370', '8301', '1022'
+    '1231', '9997', '8829', '6765', '9114', '5673', '0103', '4370', '8301',
+    '1022'
 ]
 
 name = None
+
 
 #Introduction to the game
 def introduction():
@@ -25,7 +27,9 @@ def introduction():
         #Gives tutorial
         if tutorial.lower() == "yes":
             print("10 turns. 4 numbers. The goal? Hack the pincode.")
-            print("For every number in the pincode you've come up with, I'll tell you whether it is correct AND correctly placed (G), correct but placed incorrectly (C) or just plain wrong (F).")
+            print(
+                "For every number in the pincode you've come up with, I'll tell you whether it is correct AND correctly placed (G), correct but placed incorrectly (C) or just plain wrong (F)."
+            )
             break
 
         #Skips tutorial
@@ -39,6 +43,7 @@ def introduction():
 
 
 introduction()
+
 
 #Main code for the game
 def main():
@@ -61,8 +66,10 @@ def main():
         guess = input()
 
         #Easteregg codes
-        e1 = "1955"
-        e2 = "1980"
+        e1 = "1955"  #Birthyear of BNT
+        e2 = "1980"  #Birthyear of LGG
+        e3 = "1807"  #Birthdate of Woet
+        e4 = "0609"  #Birthdate of Robert
 
         #Checks if only numbers have been inputted
         if guess.isdigit() == False:
@@ -123,8 +130,19 @@ def main():
                 nodouble.append(guess[i])
 
         #Easteregg
-        if guess != code and guess == e1 or guess == e2:
-            print("Yeah!")
+        if guess != code and guess == e1 or guess == e2 or guess == e3 or guess == e4:
+            if guess == e1:
+                print("Yeah! You've found the birthyear of BNT!")
+            elif guess == e2:
+                print("Yeah! You've found the birthyear of LGG!")
+            elif guess == e3:
+                print(
+                    "Yeah! You've found the birthyear of one of the developers of this game, Woet!"
+                )
+            elif guess == e4:
+                print(
+                    "Yeah! You've found the birthdate of one of the creators of this game, Robert!"
+                )
             guessesTaken = guessesTaken - 1
         else:
             print(*feedback, sep=' ')
@@ -132,13 +150,14 @@ def main():
 
 main()
 
+
 #The player has te option to play again
 def play_again():
     while True:
         #In case the player lost the game
         if code != guess:
-            print("You've lost! The correct code was " + code +
-                  ". Do you want to try again, and win this time?")
+            print("Hahahahaha! You've lost! The correct code was " + code +
+                  ". Do you want to try again, and win this time? (yes / no)")
         #In case the player won the game
         elif code == guess:
             print(
