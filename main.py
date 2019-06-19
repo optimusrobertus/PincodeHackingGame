@@ -83,69 +83,60 @@ def main():
             guessesTaken = guessesTaken - 1
             continue
 
-        #Checks the code
+        #Base of feedback
+        feedback = ['F'] * 4
+        digits = [code.count(str(i)) for i in range(10)]
+        count_digits = [i for i in digits]
+
+        #Checks the user input against the secret code
         if guess == code:
 
-            #In case the user guesses the code in 1 turn
-            if (guessesTaken) == 1:
-                print("Well done, " + name + "! You've hacked the code in " +
-                      str(guessesTaken) + " turn!")
+            #If the user guessed the code in 1 turn
+            if guess == code and guessesTaken == 1:
+                print("Oof! You've beaten me in " + str(guessesTaken) +
+                      " turn!")
+                break
 
-            #In cases the user guesses the code in more than 1 turn
-            else:
-                print("Well done, " + name + "! You've hacked the code in " +
-                      str(guessesTaken) + " turns!")
-            return
+            #If the user guessed the code in more than 1 turn
+            if guess == code and guessesTaken > 1:
+                print("Oof! You've beaten me in " + str(guessesTaken) +
+                      " turns!")
+                break
+        else:
+            for i, digit in enumerate(guess):
+                index = int(digit)
+                if count_digits[index] > 0 and code[i] == digit:
+                    count_digits[index] -= 1
+                    feedback[i] = 'G'
+                elif count_digits[index] > 0:
+                    count_digits[index] -= 1
+                    feedback[i] = 'C'
 
-        #Sets empty list for the feedback on the user inputted code
-        feedback = []
-        nodouble = []
-
-        #Iterates from 0 to 4
-        for i in range(4):
-
-            #Compares the items in the list to eachother
-            if guess[i] == code[i]:
-
-                #A match means the letter G is added to feedback
-                feedback.append("G")
-                nodouble.append(guess[i])
-
-            #Checks if the guess number is contained in the code
-            elif guess[i] in code:
-
-                #Makes sure the position of the numbers isn't the same
-                if guess[i] != code[i]:
-                    if guess[i] not in nodouble:
-
-                        #The letter is added to feedback[]  if there's a match
-                        feedback.append("C")
-                        nodouble.append(guess[i])
-
-            #If the statements above are false, this is executed
-            elif guess[i] not in code:
-
-                #No match at all means an F is added to feedback[]
-                feedback.append("F")
-                nodouble.append(guess[i])
-
-        #Easteregg
+        #Checks whether the user inputted an Easteregg
         if guess != code and guess == e1 or guess == e2 or guess == e3 or guess == e4:
+
+            #Easteregg nr. 1
             if guess == e1:
                 print("Yeah! You've found the birthyear of BNT!")
+
+            #Easteregg nr. 2
             elif guess == e2:
                 print("Yeah! You've found the birthyear of LGG!")
+
+            #Easteregg nr. 3
             elif guess == e3:
                 print(
-                    "Yeah! You've found the birthyear of one of the developers of this game, Woet!"
+                    "Yeah! You've found the birthdate of one of the developers of this game, Woet!"
                 )
+
+            #Easteregg nr. 4
             elif guess == e4:
                 print(
                     "Yeah! You've found the birthdate of one of the creators of this game, Robert!"
                 )
             guessesTaken = guessesTaken - 1
         else:
-            print(*feedback, sep=' ')
+            print(*feedback, sep=" ")
 
 
 main()
@@ -161,28 +152,30 @@ def play_again():
         #In case the player won the game
         elif code == guess:
             print(
-                "Oof. You've beaten me.... Do you want to be play again (and be beaten this time)? (yes / no)"
+                "Do you want to play again (and be beaten this time)? (yes / no)"
             )
 
         #Input on whether the user wants to play again.
         play_again = input()
 
         #Restarts the game.
-        if play_again.lower() == "yes":
-            print("Great choice! This time, it won't be so easy!")
-            main()
+        while play_again.lower() != "no" or play_again.lower() != "yes":
+            if play_again.lower() == "yes":
+                print("Great choice! This time, it won't be so easy!")
+                main()
+                break
 
-        #Stops the game
-        elif play_again.lower() == "no":
-            print(
-                "That's too bad.... I really enjoyed playing with you! But hey, it was fun, and I hope to see you again soon, "
+            #Stops the game
+            elif play_again.lower() == "no":
+                print(
+                "That's too bad.... But hey, it was fun, and I hope to see you again soon, "
                 + name + "!")
-            exit()
+                exit()
 
-        #Checks if the correct input has been given on whether the user wants to play again
-        else:
-            print("Please answer with either yes or no.")
-            play_again = input()
+            #Checks if the correct input has been given on whether the user wants to play again
+            else:
+                print("Please answer with either yes or no.")
+                play_again = input()
 
 
 play_again()
